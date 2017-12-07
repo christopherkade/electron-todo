@@ -10,9 +10,9 @@
             [(ngModel)]="listService.selectedList.name" />
 
     <div class="columns is-multiline">
-      <div class="column is-one-third" *ngFor="let todo of listService.selectedList.todos">
-          <div class="card todo-card" (keydown)="saveTODO($event, todo)">
-            <header class="card-header"  (click)="todo.edited = true">
+      <div class="column is-one-third" *ngFor="let todo of listService.selectedList.todos ; let i = index">
+          <div class="card todo-card" (keydown)="saveTODO($event, todo)" [ngStyle]="{'background-color': todo.done ? '#a5d6a7' : 'white'}">
+            <header class="card-header">
               <p *ngIf="!todo.edited" class="card-header-title">
                 {{todo.name}}
               </p>
@@ -23,25 +23,28 @@
                 {{todo.description}}
               </span>
 
-              <input *ngIf="todo.edited" class="input"
+              <textarea *ngIf="todo.edited" class="textarea"
                 value={{todo.description}}
-                [(ngModel)]="todo.description" />
+                [(ngModel)]="todo.description"></textarea>
             </div>
+
             <div class="card-footer">
-              <a class="card-footer-item done-link" *ngIf="!todo.done" (click)="validateTODO(todo)">
+              <a class="card-footer-item done-link" (click)="validateTODO(todo, i)" *ngIf="!todo.done">
                 <i class="fa fa-check done-icon" aria-hidden="true"></i>
+              </a>
+              <a class="card-footer-item done-link" (click)="deleteTODO(i)" *ngIf="todo.done">
+                <i class="fa fa-times done-icon" aria-hidden="true"></i>
+              </a>
+
+              <a class="card-footer-item done-link" (click)="todo.edited = true">
+                <i class="fa fa-pencil-square edit-todo-icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
-
       </div>
 
-      <div class="column is-one-third">
-        <div class="card todo-card">
-          <div class="card-content">
-            <i class="fa fa-plus-circle add-button" aria-hidden="true" (click)="addTODO()"></i>
-          </div>
-        </div>
+      <div class="column is-one-third add-button-column">
+        <i class="fa fa-plus-circle add-button" aria-hidden="true" (click)="addTODO()"></i>
       </div>
     </div>
   </div>
