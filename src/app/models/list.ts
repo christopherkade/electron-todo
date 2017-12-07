@@ -4,6 +4,7 @@ import { Todo } from './todo'
 export class List {
   name: string = 'New List';
   todos: Todo[] = [];
+  edited: boolean = false;
 
   constructor(name: string, todos: Todo[]) {
     this.name = name;

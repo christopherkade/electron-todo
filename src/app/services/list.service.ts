@@ -15,20 +15,17 @@ export class ListService {
     }
   }
 
-  getLists() {
-    console.log('Getting lists for our user...');
-  }
-
+  // Mocks a set of lists & todos
   createFakeLists() {
-    const todo = new Todo('Do this', 'Dont forget that');
-    const todo2 = new Todo('Do that', 'Yes, dont forget that !');
-    const todo3 = new Todo('Do that', 'Yes, dont forget that !');
-    const list = new List('List 01', [todo, todo2, todo3]);
+    let todo = new Todo('Do this', 'Dont forget that');
+    let todo2 = new Todo('Do that', 'Yes, dont forget that !');
+    let todo3 = new Todo('Do that', 'Yes, dont forget that !');
+    let list = new List('List 01', [todo, todo2, todo3]);
     this.lists.push(list);
 
-    const todo = new Todo('Do this', 'Ayy');
-    const todo2 = new Todo('Do that', 'Lmao');
-    const list = new List('List 02', [todo, todo2]);
+    todo = new Todo('Do this', 'Ayy');
+    todo2 = new Todo('Do that', 'Lmao');
+    list = new List('List 02', [todo, todo2]);
     this.lists.push(list);
   }
 }
