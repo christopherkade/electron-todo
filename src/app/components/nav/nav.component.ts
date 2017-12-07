@@ -8,11 +8,9 @@ import { List } from '../../models/list'
   styleUrls: ['./nav.component.sass']
 })
 export class NavComponent implements OnInit {
-  constructor(private listService: ListService) { }
+  constructor(public listService: ListService) { }
 
   ngOnInit() {
-    // Initialize our list from the service
-    this.lists = this.listService.lists;
   }
 
   // Called when a list is selected

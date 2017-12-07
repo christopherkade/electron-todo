@@ -3,9 +3,9 @@
 
   <div class="separator"></div>
 
-  <h2 class="subtitle" *ngIf="lists.length === 0">No list to be displayed <i class="fa fa-frown-o" aria-hidden="true"></i></h2>
+  <h2 class="subtitle" *ngIf="this.listService.lists.length === 0">No list to be displayed <i class="fa fa-frown-o" aria-hidden="true"></i></h2>
 
-  <button *ngFor="let list of lists" class="button is-info list-button" (click)="listSelected(list)">{{list.name}}</button>
-  
+  <button *ngFor="let list of this.listService.lists" class="button is-info list-button" (click)="listSelected(list)">{{list.name}}</button>
+
   <i class="fa fa-plus-circle add-button" aria-hidden="true" (click)="addList()"></i>
 </div>

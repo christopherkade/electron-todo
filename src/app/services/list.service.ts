@@ -22,7 +22,8 @@ export class ListService {
   createFakeLists() {
     const todo = new Todo('Do this', 'Dont forget that');
     const todo2 = new Todo('Do that', 'Yes, dont forget that !');
-    const list = new List('List 01', [todo, todo2]);
+    const todo3 = new Todo('Do that', 'Yes, dont forget that !');
+    const list = new List('List 01', [todo, todo2, todo3]);
     this.lists.push(list);
 
     const todo = new Todo('Do this', 'Ayy');

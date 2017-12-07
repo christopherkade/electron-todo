@@ -7,9 +7,8 @@ import { ListService } from '../../services/list.service';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-    
+
   constructor(public listService: ListService) { }
 
   ngOnInit() {}
-
 }
