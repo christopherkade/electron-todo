@@ -1,0 +1,21 @@
+<div class="list">
+  <div class="container">
+    <h1 class="title">{{listService.selectedList.name}}</h1>
+
+    <div class="card todo-card" *ngFor="let todo of listService.selectedList.todos">
+      <header class="card-header">
+        <p class="card-header-title">
+          {{todo.name}}
+        </p>
+      </header>
+      <div class="card-content">
+        {{todo.description}}
+      </div>
+      <div class="card-footer">
+        <a class="card-footer-item done-link">
+          <i class="fa fa-check done-icon" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
