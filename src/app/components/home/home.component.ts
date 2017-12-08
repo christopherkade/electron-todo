@@ -9,9 +9,15 @@ import { Todo } from '../../models/todo';
 })
 export class HomeComponent implements OnInit {
 
+  edition: boolean = false;
+
   constructor(public listService: ListService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.listService.selectedList != null && this.listService.selectedList.todos.length > 0) {
+      this.listService.editedTODO = this.listService.selectedList.todos[0];
+    }
+  }
 
   // Adds a new todo to our list
   addTODO() {
@@ -19,11 +25,8 @@ export class HomeComponent implements OnInit {
   }
 
   // Save edited Todo
-  saveTODO(event: any, todo: Todo) {
-    if (event.keyCode == 13) {
-      // TODO: Save todo locally
-      todo.edited = false;
-    }
+  saveTODO() {
+    this.edition = false;
   }
 
   saveList(event: any) {
@@ -46,5 +49,11 @@ export class HomeComponent implements OnInit {
   deleteTODO(index) {
   // TODO: Delete them locally
     this.listService.selectedList.todos.splice(index, 1);
+  }
+
+  editTODO(todo) {
+    // TODO: Edit locally
+    this.listService.editedTODO = todo;
+    this.edition = true;
   }
 }

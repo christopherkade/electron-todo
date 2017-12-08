@@ -22,6 +22,7 @@ export class NavComponent implements OnInit {
     // Create a new List with an empty array of Todos
     this.listService.lists.push(new List('New List', []));
 
+    console.log(this.listService.lists.length);
     // Set selected list to the newly created one
     this.listService.selectedList = this.listService.lists[this.listService.lists.length - 1];
   }

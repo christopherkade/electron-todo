@@ -6,6 +6,7 @@ import { Todo } from '../models/todo';
 export class ListService {
   lists: List[] = [];
   selectedList: List = null;
+  editedTODO: Todo;
 
   constructor() {
     this.createFakeLists();
