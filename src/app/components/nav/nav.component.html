@@ -7,5 +7,7 @@
 
   <button *ngFor="let list of this.listService.lists" class="button is-info list-button" (click)="listSelected(list)">{{list.name}}</button>
 
-  <i class="fa fa-plus-circle add-button" aria-hidden="true" (click)="addList()"></i>
+  <span class="icon add-icon" (click)="addList()">
+    <i class="fas fa-plus-circle"></i>
+  </span>
 </div>

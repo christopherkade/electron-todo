@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
+import { TodoComponent } from './components/todo/todo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { ListService } from './services/list.service';
@@ -16,7 +17,8 @@ import { ListService } from './services/list.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

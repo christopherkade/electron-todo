@@ -1,7 +1,9 @@
 <div class="list">
   <div class="container" *ngIf="listService.selectedList != null">
     <h1 class="title" *ngIf="!listService.selectedList.edited">{{listService.selectedList.name}}
-      <i class="fa fa-pencil-square edit-icon" aria-hidden="true" (click)="listService.selectedList.edited = true"></i>
+      <span class="icon edit-icon" (click)="listService.selectedList.edited = true">
+        <i class="far fa-edit"></i>
+      </span>
     </h1>
 
     <input *ngIf="listService.selectedList.edited" class="input list-name-input"
@@ -11,53 +13,13 @@
 
     <div class="columns is-multiline">
       <div class="column is-one-third" *ngFor="let todo of listService.selectedList.todos ; let i = index">
-          <div class="card todo-card" [ngStyle]="{'background-color': todo.done ? '#a5d6a7' : 'white'}">
-            <header class="card-header">
-              <p class="card-header-title">
-                {{todo.name}}
-              </p>
-            </header>
-            <div class="card-content">
-              <span>
-                {{todo.description}}
-              </span>
-            </div>
-
-            <div class="card-footer">
-              <a class="card-footer-item done-link" (click)="validateTODO(todo, i)" *ngIf="!todo.done">
-                <i class="fa fa-check done-icon" aria-hidden="true"></i>
-              </a>
-              <a class="card-footer-item done-link" (click)="deleteTODO(i)" *ngIf="todo.done">
-                <i class="fa fa-times done-icon" aria-hidden="true"></i>
-              </a>
-
-              <a class="card-footer-item done-link" (click)="editTODO(todo)">
-                <i class="fa fa-pencil-square edit-todo-icon" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
+        <app-todo [todo]="todo" [index]="i"></app-todo>
       </div>
 
       <div class="column is-one-third add-button-column" *ngIf="listService.selectedList != null">
-        <i class="fa fa-plus-circle add-button" aria-hidden="true" (click)="addTODO()"></i>
-      </div>
-    </div>
-
-    <div class="modal" [ngClass]="{'is-active': edition}" *ngIf="edition">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <input class="input" value={{listService.editedTODO.name}} [(ngModel)]="listService.editedTODO.name" />
-        </header>
-        <section class="modal-card-body">
-          <textarea class="textarea"
-            value={{listService.editedTODO.description}}
-            [(ngModel)]="listService.editedTODO.description"></textarea>
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success" (click)="saveTODO()">Save changes</button>
-          <button class="button" (click)="edition = false">Cancel</button>
-        </footer>
+        <span class="icon add-button" (click)="addTODO()">
+          <i class="fas fa-plus-circle"></i>
+        </span>
       </div>
     </div>
 

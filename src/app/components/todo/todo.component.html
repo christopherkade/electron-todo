@@ -1,0 +1,43 @@
+<div class="card todo-card" [ngStyle]="{'background-color': todo.done ? '#a5d6a7' : 'white'}">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{todo.name}}
+    </p>
+  </header>
+  <div class="card-content">
+    <span>
+      {{todo.description}}
+    </span>
+  </div>
+
+  <div class="card-footer">
+    <a class="card-footer-item todo-link" (click)="validateTODO(todo)" *ngIf="!todo.done">
+      <i class="far fa-check-circle todo-icon"></i>
+    </a>
+    <a class="card-footer-item todo-link" (click)="deleteTODO()" *ngIf="todo.done">
+      <i class="far fa-trash-alt todo-icon"></i>
+    </a>
+    <a class="card-footer-item todo-link" (click)="editTODO()">
+      <i class="far fa-edit todo-icon"></i>
+    </a>
+
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'is-active': edition}" *ngIf="edition">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <input class="input" value={{listService.editedTODO.name}} [(ngModel)]="listService.editedTODO.name" />
+    </header>
+    <section class="modal-card-body">
+      <textarea class="textarea"
+        value={{listService.editedTODO.description}}
+        [(ngModel)]="listService.editedTODO.description"></textarea>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="saveTODO()">Save changes</button>
+      <button class="button" (click)="edition = false">Cancel</button>
+    </footer>
+  </div>
+</div>
