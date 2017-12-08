@@ -20,12 +20,5 @@ export class HomeComponent implements OnInit {
   // Adds a new todo to our list
   addTODO() {
     this.listService.selectedList.todos.unshift(new Todo('New TODO', ''));
-  }
-
-  saveList(event: any) {
-    if (event.keyCode == 13) {
-      // TODO: Save list locally
-      this.listService.selectedList.edited = false;
-    }
-  }
+  }  
 }

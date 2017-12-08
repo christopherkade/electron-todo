@@ -29,4 +29,15 @@ export class ListService {
     list = new List('List 02', [todo, todo2]);
     this.lists.push(list);
   }
+
+  deleteList() {
+    this.lists.splice(
+      this.lists.findIndex(list => {
+        return list.name === this.selectedList.name
+      }
+      ), 1);
+
+    this.lists.length > 0 ?
+      this.selectedList = this.lists[0] : this.selectedList = null;
+  }
 }

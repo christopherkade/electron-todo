@@ -1,15 +1,10 @@
 <div class="list">
   <div class="container" *ngIf="listService.selectedList != null">
-    <h1 class="title" *ngIf="!listService.selectedList.edited">{{listService.selectedList.name}}
-      <span class="icon edit-icon" (click)="listService.selectedList.edited = true">
-        <i class="far fa-edit"></i>
+    <h1 class="title">{{listService.selectedList.name}}
+      <span class="icon settings-icon" (click)="listService.selectedList.settings = true">
+        <i class="fas fa-cog"></i>
       </span>
     </h1>
-
-    <input *ngIf="listService.selectedList.edited" class="input list-name-input"
-            value={{listService.selectedList.name}}
-            (keydown)="saveList($event)"
-            [(ngModel)]="listService.selectedList.name" />
 
     <div class="columns is-multiline">
       <div class="column is-one-third" *ngFor="let todo of listService.selectedList.todos ; let i = index">
@@ -22,6 +17,29 @@
         </span>
       </div>
     </div>
-
   </div>
+</div>
+
+<div *ngIf="listService.selectedList != null">
+  <div class="modal" [ngClass]="{'is-active': listService.selectedList.settings}" *ngIf="listService.selectedList.settings">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <h1 class="subtitle">List settings</h1>
+      </header>
+      <section class="modal-card-body">
+        <h1 class="subtitle settings-subtitle">Edit title</h1>
+        <input class="input list-name-input"
+                value={{listService.selectedList.name}}
+                [(ngModel)]="listService.selectedList.name" />
+
+        <h1 class="subtitle settings-subtitle">Danger zone</h1>
+        <button class="button is-danger" (click)="listService.deleteList()">Delete list</button>
+
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="listService.selectedList.settings = false">Close</button>
+      </footer>
+    </div>
+  </div>  
 </div>
